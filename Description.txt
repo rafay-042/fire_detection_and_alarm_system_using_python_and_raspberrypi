@@ -1,0 +1,34 @@
+Aim of the project:
+                  This project aims to detect the fire especially in indoor environment
+This is a prototype code that successfully demonstrates the working of a computer vision
+based fire detection and alarm system that can be implemented on large scale for venues 
+like malls, schools, hospitals, hotels etc.
+
+Abstract:
+         There are three code files, one is fully hardware oriented present in the base
+folder. The second one inlcudes only raspberry pi while the third code file is solely
+software based that uses camera of your system. Since the other two files dont have
+hardware, alarm system is only implemented in the code file "fire_det_and_alarm.py"
+present in the base folder. The intended program takes live feed of the room from the
+pi Camera of raspberry pi and detects fire and draws a colored rectangle around its
+vicinity as an indication that fire is detected. Shows respective message on console
+and triggers the alarm system (causing attached led to glow).
+
+Working:
+        Following are the steps that show the working of this project:
+1-Necessary imports are made i.e., cv2, RPi.GPIO, sleep etc.
+2-"fire_cascade" variable is initialized that uses the xml file. It is necessary for the
+  xml file to be passed as parameters of CascadeClassifier in order to detect fire.
+3-Variable of camera in initialized to start capturing live feed.
+4-Loop is introduced that continuoues to take feed from camera until the key "q" is pressed.
+5-The feed is converted into grayscale in order for the camera to distinguish between fire
+  and background more accurately and detect the fire with more ease.
+6-The fire is being detected continuously by fire_cascade.detectMultiScale.
+7-On the event of fire detection, a coloured rectangle is drawn around it to show that the
+  fire is detected and print the respective message on console.
+8-After detection a signal is sent to GPIO pin number 8 of the raspberry pi (shown in schematic
+  diagram as well). The led is caused to blink for a while and the frame in which fire was
+  detected is paused for the intended purposes. After the alarm is finished its iteration, the
+  live is resumed again.
+9-"q" is pressed to end the loop and as well as our program.
+
